@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: tumor_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models
+    restart: unless-stopped
+
+  streamlit:
+    build: .
+    container_name: tumor_streamlit
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./models:/app/models
+    working_dir: /app/streamlit
+    environment:
+      - TUMOR_API_URL=http://api:8000
+    command: streamlit run app.py --server.port 8501 --server.address 0.0.0.0
+    depends_on:
+      - api
+    restart: unless-stopped

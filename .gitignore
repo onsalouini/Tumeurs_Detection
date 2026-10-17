@@ -1,0 +1,18 @@
+# Environnements Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Données locales (dataset non versionné, trop volumineux)
+data/
+data_backup/
+
+# Wheels hors ligne : trop volumineuses pour GitHub (> 100 Mo), disponibles sur PyPI
+wheels/
+wheels_linux/
+
+# Divers
+.DS_Store
+Thumbs.db
+*.log
